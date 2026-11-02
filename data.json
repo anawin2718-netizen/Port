@@ -1,0 +1,77 @@
+{
+  "site": {
+    "title": "พอร์ตโฟลิโอ | นักออกแบบระบบและจัดการข้อมูล",
+    "name": "ชื่อ-นามสกุลของคุณ",
+    "tagline": "นักศึกษามหาวิทยาลัยกรุงเทพ",
+    "heroImage": "assets/bu-campus.jpg"
+  },
+  "nav": [
+    { "label": "ทักษะ", "href": "#skills" },
+    { "label": "ผลงาน", "href": "#projects" },
+    { "label": "ติดต่อ", "href": "#contact" }
+  ],
+  "hero": {
+    "title": "นักออกแบบระบบและจัดการข้อมูล",
+    "titleEn": "(Data-Driven Designer)",
+    "description": "เชื่อมโยงการบริหารจัดการฐานข้อมูลที่แข็งแกร่ง เข้ากับการออกแบบประสบการณ์ผู้ใช้ที่สวยงามและใช้งานง่าย",
+    "primaryButton": { "label": "ดูผลงานของฉัน", "href": "#projects" },
+    "secondaryButton": { "label": "ติดต่อฉัน", "href": "#contact" }
+  },
+  "skills": {
+    "heading": "ทักษะของฉัน",
+    "intro": "ผมออกแบบทั้งโครงสร้างข้อมูลที่อยู่เบื้องหลัง และหน้าจอที่ผู้ใช้มองเห็น",
+    "main": [
+      {
+        "name": "SQL จัดการฐานข้อมูล",
+        "description": "เขียนคิวรีและออกแบบตารางให้ข้อมูลถูกต้อง ค้นหาเร็ว และดูแลรักษาง่าย"
+      },
+      {
+        "name": "การออกแบบ UI/UX",
+        "description": "ออกแบบหน้าจอและขั้นตอนการใช้งานจากความต้องการของผู้ใช้จริง"
+      }
+    ],
+    "extra": [
+      "การออกแบบสถาปัตยกรรมฐานข้อมูล (Database Architecture)",
+      "การแปลงข้อมูลเป็นภาพ (Data Visualization)",
+      "การใช้งาน Figma",
+      "การวิเคราะห์ระบบ (Systems Analysis)"
+    ]
+  },
+  "projects": {
+    "heading": "ผลงาน",
+    "intro": "ตัวอย่างงานที่แสดงทั้งฝั่งข้อมูลและฝั่งการออกแบบ",
+    "items": [
+      {
+        "title": "โครงการออกแบบระบบฐานข้อมูลร้านค้าออนไลน์",
+        "focus": "SQL & Database",
+        "description": "ออกแบบโครงสร้างฐานข้อมูลสำหรับร้านค้าออนไลน์ ครอบคลุมสินค้า คำสั่งซื้อ ลูกค้า และการชำระเงิน พร้อมวาด ER Diagram และเขียนคิวรีสำหรับรายงานประจำวัน",
+        "tags": ["SQL", "ER Diagram", "Normalization"],
+        "link": { "label": "ดูรายละเอียดโครงการ", "href": "#" }
+      },
+      {
+        "title": "โครงการปรับปรุงหน้าเว็บพอร์ตัลนักศึกษา BU",
+        "focus": "UI/UX & Figma",
+        "description": "ศึกษาปัญหาการใช้งานพอร์ตัลของนักศึกษา แล้วออกแบบหน้าจอและลำดับการใช้งานใหม่ใน Figma เพื่อให้หาข้อมูลตารางเรียนและผลการเรียนได้เร็วขึ้น",
+        "tags": ["Figma", "User Research", "Prototype"],
+        "link": { "label": "ดูรายละเอียดโครงการ", "href": "#" }
+      },
+      {
+        "title": "แดชบอร์ดวิเคราะห์ข้อมูลยอดขาย",
+        "focus": "SQL & Data Visualization",
+        "description": "ดึงข้อมูลยอดขายด้วย SQL แล้วสร้างแดชบอร์ดแสดงแนวโน้มรายเดือน สินค้าขายดี และเปรียบเทียบตามช่องทาง เพื่อช่วยตัดสินใจเรื่องสต็อกและโปรโมชัน",
+        "tags": ["SQL", "Data Visualization", "Dashboard"],
+        "link": { "label": "ดูรายละเอียดโครงการ", "href": "#" }
+      }
+    ]
+  },
+  "contact": {
+    "heading": "ติดต่อฉัน",
+    "intro": "สนใจร่วมงาน ฝึกงาน หรืออยากคุยเรื่องโปรเจกต์ ส่งข้อความมาได้เลย",
+    "links": [
+      { "label": "อีเมล", "value": "yourname@email.com", "href": "mailto:yourname@email.com" },
+      { "label": "GitHub", "value": "github.com/yourname", "href": "https://github.com/yourname" },
+      { "label": "LinkedIn", "value": "linkedin.com/in/yourname", "href": "https://linkedin.com/in/yourname" }
+    ],
+    "footer": "จัดทำโดยนักศึกษามหาวิทยาลัยกรุงเทพ"
+  }
+}

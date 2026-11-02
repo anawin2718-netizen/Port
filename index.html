@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>พอร์ตโฟลิโอ | นักออกแบบระบบและจัดการข้อมูล</title>
+<meta name="description" content="พอร์ตโฟลิโอของนักศึกษามหาวิทยาลัยกรุงเทพ ด้านการจัดการฐานข้อมูลและการออกแบบ UI/UX">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600&family=Sarabun:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0A1F5C;
+  --navy-deep:#06123A;
+  --navy-soft:#2A4BB0;
+  --orange:#F58220;
+  --orange-soft:#FFB067;
+  --text:#F4F6FC;
+  --muted:#C3CBE3;
+  --glass:rgba(255,255,255,.09);
+  --glass-strong:rgba(255,255,255,.14);
+  --glass-line:rgba(255,255,255,.22);
+  --hero-img:url("assets/bu-campus.jpg");
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{
+  font-family:"Sarabun","Kanit",sans-serif;
+  font-size:1.0625rem;line-height:1.75;color:var(--text);
+  background:var(--navy-deep);
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:"Kanit","Sarabun",sans-serif;font-weight:500;line-height:1.35}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--orange);outline-offset:3px;border-radius:6px}
+
+/* พื้นหลังตึกมหาวิทยาลัย: ภาพถ่าย (ถ้ามี) ซ้อนบนภาพวาดสำรอง แล้วเบลอเบาๆ */
+.backdrop{position:fixed;inset:0;z-index:-2;overflow:hidden}
+.backdrop::before{
+  content:"";position:absolute;inset:-24px;
+  background:
+    var(--hero-img) center/cover no-repeat,
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900' preserveAspectRatio='xMidYMax slice'><defs><linearGradient id='w' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='%23FFFFFF' stop-opacity='.28'/><stop offset='1' stop-color='%23FFFFFF' stop-opacity='.06'/></linearGradient></defs><g fill='url(%23w)'><rect x='140' y='430' width='300' height='470'/><rect x='470' y='300' width='360' height='600'/><rect x='860' y='380' width='250' height='520'/><rect x='1140' y='480' width='320' height='420'/></g><g fill='%23F58220' fill-opacity='.35'><rect x='470' y='300' width='360' height='14'/></g><g fill='%23FFFFFF' fill-opacity='.16'><g id='r'><rect x='500' y='340' width='30' height='40'/><rect x='550' y='340' width='30' height='40'/><rect x='600' y='340' width='30' height='40'/><rect x='650' y='340' width='30' height='40'/><rect x='700' y='340' width='30' height='40'/><rect x='750' y='340' width='30' height='40'/></g><use href='%23r' y='80'/><use href='%23r' y='160'/><use href='%23r' y='240'/><use href='%23r' y='320'/></g></svg>") center bottom/cover no-repeat,
+    linear-gradient(160deg,#16357F 0%,#0A1F5C 55%,#06123A 100%);
+  filter:blur(5px) saturate(1.05);
+}
+.backdrop::after{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(900px 500px at 15% 10%,rgba(245,130,32,.22),transparent 60%),
+    linear-gradient(180deg,rgba(6,18,58,.55) 0%,rgba(6,18,58,.72) 55%,rgba(6,18,58,.86) 100%);
+}
+
+/* นำทาง */
+.nav{
+  position:sticky;top:0;z-index:20;
+  background:rgba(6,18,58,.55);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--glass-line);
+}
+.nav-inner{max-width:1100px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{font-family:"Kanit",sans-serif;font-weight:500;text-decoration:none;display:flex;align-items:center;gap:10px;line-height:1.3}
+.brand-mark{width:12px;height:30px;border-radius:3px;background:linear-gradient(180deg,var(--orange) 0 50%,var(--navy-soft) 50% 100%)}
+.brand small{display:block;font-family:"Sarabun",sans-serif;font-weight:400;font-size:.8rem;color:var(--muted)}
+.nav ul{display:flex;gap:6px;list-style:none}
+.nav ul a{display:block;padding:6px 14px;border-radius:999px;text-decoration:none;color:var(--muted);transition:background .2s,color .2s}
+.nav ul a:hover{background:var(--glass-strong);color:#fff}
+
+main{max-width:1100px;margin:0 auto;padding:0 24px}
+section{padding:88px 0 0}
+
+/* หน้าแรก */
+.hero{min-height:calc(100svh - 56px);display:flex;flex-direction:column;justify-content:center;padding:64px 0 24px}
+.hero h1{font-size:clamp(2.2rem,6.4vw,4.6rem);font-weight:600;max-width:15ch;line-height:1.3}
+.hero h1 .en{display:block;margin-top:.15em;font-size:.48em;font-weight:400;color:var(--orange-soft);letter-spacing:.01em}
+.hero p{margin-top:28px;max-width:34em;font-size:clamp(1.05rem,2.2vw,1.3rem);color:var(--muted);padding-left:18px;border-left:3px solid var(--orange)}
+.actions{margin-top:36px;display:flex;flex-wrap:wrap;gap:14px}
+.btn{display:inline-block;padding:12px 28px;border-radius:999px;font-family:"Kanit",sans-serif;font-weight:500;text-decoration:none;transition:transform .2s,background .2s,box-shadow .2s}
+.btn-primary{background:var(--orange);color:var(--navy-deep);box-shadow:0 8px 28px rgba(245,130,32,.35)}
+.btn-primary:hover{background:var(--orange-soft);transform:translateY(-2px)}
+.btn-ghost{background:var(--glass);border:1px solid var(--glass-line);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.btn-ghost:hover{background:var(--glass-strong)}
+
+/* เปิดหน้าครั้งเดียว: หัวข้อหลักเลื่อนขึ้นตามลำดับ */
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.hero > *{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
+.hero h1{animation-delay:.05s}.hero p{animation-delay:.25s}.hero .actions{animation-delay:.45s}
+
+/* หัวข้อส่วน */
+.section-head{margin-bottom:36px}
+.section-head h2{font-size:clamp(1.7rem,4vw,2.4rem);display:inline-block;padding-bottom:6px;border-bottom:4px solid var(--orange)}
+.section-head p{margin-top:14px;color:var(--muted);max-width:36em}
+
+/* การ์ดกระจกใส */
+.glass{
+  background:var(--glass);
+  border:1px solid var(--glass-line);
+  border-radius:20px;
+  -webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%);
+  box-shadow:0 10px 40px rgba(2,8,30,.35),inset 0 1px 0 rgba(255,255,255,.18);
+}
+
+/* ทักษะ */
+.skill-main{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.skill-card{padding:28px 28px 30px;border-top:4px solid var(--orange)}
+.skill-card:nth-child(2){border-top-color:var(--navy-soft)}
+.skill-card h3{font-size:1.4rem;margin-bottom:8px}
+.skill-card p{color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:10px;list-style:none}
+.skill-extra{margin-top:24px}
+.skill-extra .tags li{
+  padding:8px 18px;border-radius:999px;
+  background:rgba(42,75,176,.35);border:1px solid rgba(143,168,255,.45);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  font-size:.98rem;
+}
+
+/* ผลงาน */
+.project-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.project{display:flex;flex-direction:column;padding:26px;transition:transform .25s,background .25s}
+.project:hover{transform:translateY(-4px);background:var(--glass-strong)}
+.focus{align-self:flex-start;padding:3px 14px;border-radius:999px;background:var(--orange);color:var(--navy-deep);font-family:"Kanit",sans-serif;font-size:.85rem;font-weight:500;line-height:1.7}
+.project h3{margin:16px 0 10px;font-size:1.22rem}
+.project p{color:var(--muted);font-size:1rem;flex:1}
+.project .tags{margin:18px 0}
+.project .tags li{padding:2px 12px;border-radius:8px;border:1px solid var(--glass-line);font-size:.88rem;color:var(--text)}
+.project a.more{align-self:flex-start;font-family:"Kanit",sans-serif;font-weight:500;color:var(--orange-soft);text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:2px}
+.project a.more:hover{color:#fff}
+
+/* ติดต่อ */
+.contact-box{padding:36px;display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}
+.contact-box h2{font-size:clamp(1.6rem,3.6vw,2.2rem)}
+.contact-box p{margin-top:10px;color:var(--muted)}
+.contact-list{list-style:none;display:grid;gap:12px}
+.contact-list a{display:flex;justify-content:space-between;gap:12px;padding:14px 18px;border-radius:14px;background:var(--glass);border:1px solid var(--glass-line);text-decoration:none;transition:background .2s,border-color .2s}
+.contact-list a:hover{background:var(--glass-strong);border-color:var(--orange)}
+.contact-list span:first-child{font-family:"Kanit",sans-serif;color:var(--orange-soft)}
+.contact-list span:last-child{overflow-wrap:anywhere;text-align:right}
+footer{padding:56px 24px 40px;text-align:center;color:var(--muted);font-size:.92rem}
+
+/* มือถือ / แท็บเล็ต */
+@media (max-width:960px){
+  .project-grid{grid-template-columns:1fr}
+  .contact-box{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  body{font-size:1rem}
+  .nav-inner{padding:10px 16px}
+  .nav ul a{padding:6px 10px}
+  .brand small{display:none}
+  main{padding:0 16px}
+  section{padding-top:64px}
+  .skill-main{grid-template-columns:1fr}
+  .contact-box{padding:24px}
+  .contact-list a{flex-direction:column;gap:2px}
+  .contact-list span:last-child{text-align:left}
+  .btn{flex:1 1 auto;text-align:center}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .hero > *{animation:none}
+  .project,.btn{transition:none}
+}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .glass{background:rgba(20,40,100,.7)}
+  .nav{background:rgba(6,18,58,.92)}
+}
+</style>
+</head>
+<body>
+<div class="backdrop" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span><span><span id="brandName">พอร์ตโฟลิโอ</span><small id="brandTag"></small></span></a>
+    <nav aria-label="เมนูหลัก"><ul id="navList"></ul></nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" id="hero">
+    <h1 id="heroTitle"></h1>
+    <p id="heroDesc"></p>
+    <div class="actions" id="heroActions"></div>
+  </section>
+
+  <section id="skills" aria-labelledby="skillsHeading">
+    <div class="section-head"><h2 id="skillsHeading"></h2><p id="skillsIntro"></p></div>
+    <div class="skill-main" id="skillMain"></div>
+    <div class="skill-extra glass" style="padding:22px 24px"><ul class="tags" id="skillExtra"></ul></div>
+  </section>
+
+  <section id="projects" aria-labelledby="projectsHeading">
+    <div class="section-head"><h2 id="projectsHeading"></h2><p id="projectsIntro"></p></div>
+    <div class="project-grid" id="projectGrid"></div>
+  </section>
+
+  <section id="contact" aria-labelledby="contactHeading">
+    <div class="contact-box glass">
+      <div><h2 id="contactHeading"></h2><p id="contactIntro"></p></div>
+      <ul class="contact-list" id="contactList"></ul>
+    </div>
+  </section>
+</main>
+<footer id="footer"></footer>
+
+<!-- ข้อมูลสำรอง: ใช้เมื่อเปิดไฟล์ตรงๆ จากเครื่อง (file://) ที่ดึง data.json ไม่ได้
+     บน GitHub Pages ระบบจะอ่านจาก data.json เป็นหลัก -->
+<script type="application/json" id="fallback-data">{"site": {"title": "พอร์ตโฟลิโอ | นักออกแบบระบบและจัดการข้อมูล", "name": "ชื่อ-นามสกุลของคุณ", "tagline": "นักศึกษามหาวิทยาลัยกรุงเทพ", "heroImage": "assets/bu-campus.jpg"}, "nav": [{"label": "ทักษะ", "href": "#skills"}, {"label": "ผลงาน", "href": "#projects"}, {"label": "ติดต่อ", "href": "#contact"}], "hero": {"title": "นักออกแบบระบบและจัดการข้อมูล", "titleEn": "(Data-Driven Designer)", "description": "เชื่อมโยงการบริหารจัดการฐานข้อมูลที่แข็งแกร่ง เข้ากับการออกแบบประสบการณ์ผู้ใช้ที่สวยงามและใช้งานง่าย", "primaryButton": {"label": "ดูผลงานของฉัน", "href": "#projects"}, "secondaryButton": {"label": "ติดต่อฉัน", "href": "#contact"}}, "skills": {"heading": "ทักษะของฉัน", "intro": "ผมออกแบบทั้งโครงสร้างข้อมูลที่อยู่เบื้องหลัง และหน้าจอที่ผู้ใช้มองเห็น", "main": [{"name": "SQL จัดการฐานข้อมูล", "description": "เขียนคิวรีและออกแบบตารางให้ข้อมูลถูกต้อง ค้นหาเร็ว และดูแลรักษาง่าย"}, {"name": "การออกแบบ UI/UX", "description": "ออกแบบหน้าจอและขั้นตอนการใช้งานจากความต้องการของผู้ใช้จริง"}], "extra": ["การออกแบบสถาปัตยกรรมฐานข้อมูล (Database Architecture)", "การแปลงข้อมูลเป็นภาพ (Data Visualization)", "การใช้งาน Figma", "การวิเคราะห์ระบบ (Systems Analysis)"]}, "projects": {"heading": "ผลงาน", "intro": "ตัวอย่างงานที่แสดงทั้งฝั่งข้อมูลและฝั่งการออกแบบ", "items": [{"title": "โครงการออกแบบระบบฐานข้อมูลร้านค้าออนไลน์", "focus": "SQL & Database", "description": "ออกแบบโครงสร้างฐานข้อมูลสำหรับร้านค้าออนไลน์ ครอบคลุมสินค้า คำสั่งซื้อ ลูกค้า และการชำระเงิน พร้อมวาด ER Diagram และเขียนคิวรีสำหรับรายงานประจำวัน", "tags": ["SQL", "ER Diagram", "Normalization"], "link": {"label": "ดูรายละเอียดโครงการ", "href": "#"}}, {"title": "โครงการปรับปรุงหน้าเว็บพอร์ตัลนักศึกษา BU", "focus": "UI/UX & Figma", "description": "ศึกษาปัญหาการใช้งานพอร์ตัลของนักศึกษา แล้วออกแบบหน้าจอและลำดับการใช้งานใหม่ใน Figma เพื่อให้หาข้อมูลตารางเรียนและผลการเรียนได้เร็วขึ้น", "tags": ["Figma", "User Research", "Prototype"], "link": {"label": "ดูรายละเอียดโครงการ", "href": "#"}}, {"title": "แดชบอร์ดวิเคราะห์ข้อมูลยอดขาย", "focus": "SQL & Data Visualization", "description": "ดึงข้อมูลยอดขายด้วย SQL แล้วสร้างแดชบอร์ดแสดงแนวโน้มรายเดือน สินค้าขายดี และเปรียบเทียบตามช่องทาง เพื่อช่วยตัดสินใจเรื่องสต็อกและโปรโมชัน", "tags": ["SQL", "Data Visualization", "Dashboard"], "link": {"label": "ดูรายละเอียดโครงการ", "href": "#"}}]}, "contact": {"heading": "ติดต่อฉัน", "intro": "สนใจร่วมงาน ฝึกงาน หรืออยากคุยเรื่องโปรเจกต์ ส่งข้อความมาได้เลย", "links": [{"label": "อีเมล", "value": "yourname@email.com", "href": "mailto:yourname@email.com"}, {"label": "GitHub", "value": "github.com/yourname", "href": "https://github.com/yourname"}, {"label": "LinkedIn", "value": "linkedin.com/in/yourname", "href": "https://linkedin.com/in/yourname"}], "footer": "จัดทำโดยนักศึกษามหาวิทยาลัยกรุงเทพ"}}</script>
+
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  function el(tag, props, children){
+    const n = document.createElement(tag);
+    Object.entries(props || {}).forEach(([k,v]) => {
+      if (k === 'text') n.textContent = v;
+      else if (k === 'class') n.className = v;
+      else n.setAttribute(k, v);
+    });
+    (children || []).forEach(c => n.appendChild(c));
+    return n;
+  }
+  function safeHref(h){ return /^(#|mailto:|https?:\/\/)/.test(h) ? h : '#'; }
+
+  function render(d){
+    document.title = d.site.title;
+    $('brandName').textContent = d.site.name;
+    $('brandTag').textContent = d.site.tagline;
+    if (d.site.heroImage) document.documentElement.style.setProperty('--hero-img', 'url("' + d.site.heroImage.replace(/"/g,'') + '")');
+
+    d.nav.forEach(i => $('navList').appendChild(el('li', {}, [el('a', {href: safeHref(i.href), text: i.label})])));
+
+    const h1 = $('heroTitle');
+    h1.textContent = d.hero.title;
+    h1.appendChild(el('span', {class:'en', text:d.hero.titleEn}));
+    $('heroDesc').textContent = d.hero.description;
+    $('heroActions').append(
+      el('a', {class:'btn btn-primary', href:safeHref(d.hero.primaryButton.href), text:d.hero.primaryButton.label}),
+      el('a', {class:'btn btn-ghost', href:safeHref(d.hero.secondaryButton.href), text:d.hero.secondaryButton.label})
+    );
+
+    $('skillsHeading').textContent = d.skills.heading;
+    $('skillsIntro').textContent = d.skills.intro;
+    d.skills.main.forEach(s => $('skillMain').appendChild(
+      el('article', {class:'skill-card glass'}, [el('h3',{text:s.name}), el('p',{text:s.description})])
+    ));
+    d.skills.extra.forEach(t => $('skillExtra').appendChild(el('li',{text:t})));
+
+    $('projectsHeading').textContent = d.projects.heading;
+    $('projectsIntro').textContent = d.projects.intro;
+    d.projects.items.forEach(p => {
+      const tags = el('ul', {class:'tags'}, p.tags.map(t => el('li',{text:t})));
+      $('projectGrid').appendChild(el('article', {class:'project glass'}, [
+        el('span',{class:'focus',text:p.focus}),
+        el('h3',{text:p.title}),
+        el('p',{text:p.description}),
+        tags,
+        el('a',{class:'more',href:safeHref(p.link.href),text:p.link.label})
+      ]));
+    });
+
+    $('contactHeading').textContent = d.contact.heading;
+    $('contactIntro').textContent = d.contact.intro;
+    d.contact.links.forEach(l => $('contactList').appendChild(el('li',{},[
+      el('a',{href:safeHref(l.href), target: l.href.startsWith('http') ? '_blank' : '_self', rel:'noopener'},[
+        el('span',{text:l.label}), el('span',{text:l.value})
+      ])
+    ])));
+    $('footer').textContent = d.contact.footer;
+  }
+
+  fetch('data.json', {cache:'no-cache'})
+    .then(r => { if(!r.ok) throw new Error(r.status); return r.json(); })
+    .catch(() => JSON.parse($('fallback-data').textContent))
+    .then(render);
+})();
+</script>
+</body>
+</html>
